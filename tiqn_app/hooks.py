@@ -7,6 +7,9 @@ app_license = "mit"
 
 # Apps
 # ------------------
+fixtures = [
+    {"doctype": "Workspace", "filters": [["name", "in", ["Registration"]]]}
+]
 
 # required_apps = []
 
