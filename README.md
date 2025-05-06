@@ -1,6 +1,6 @@
-### TIQN Applications
+### TIQN App
 
-TIQN Applications
+TIQN App
 
 ### Installation
 

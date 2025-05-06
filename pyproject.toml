@@ -1,9 +1,9 @@
 [project]
 name = "tiqn_app"
 authors = [
-    { name = "IT Team", email = "t@tiqn.com.vn"}
+    { name = "IT Team", email = "it@tiqn.com.vn"}
 ]
-description = "TIQN Applications"
+description = "TIQN App"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
