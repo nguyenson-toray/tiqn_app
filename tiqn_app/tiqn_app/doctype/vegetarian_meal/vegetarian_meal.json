@@ -10,13 +10,15 @@
   "amended_from",
   "current_user",
   "posting_date",
-  "register_date_for_vegetarian_meal",
+  "register_date",
   "column_break_ekdk",
   "employee_id",
   "full_name",
   "column_break_qser",
   "line_team",
-  "grade"
+  "grade",
+  "section_break_xqjq",
+  "detail"
  ],
  "fields": [
   {
@@ -36,6 +38,7 @@
   {
    "fieldname": "current_user",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Curent User",
    "options": "User",
    "read_only": 1
@@ -81,16 +84,28 @@
    "read_only": 1
   },
   {
-   "fieldname": "register_date_for_vegetarian_meal",
+   "fieldname": "section_break_xqjq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "detail",
+   "fieldtype": "Table",
+   "label": "Detail",
+   "options": "Vegetarian Meal Detail"
+  },
+  {
+   "description": "N\u1ebfu ch\u1ecdn th\u00ec s\u1ebd \u00e1p d\u1ee5ng cho to\u00e0n b\u1ed9 danh s\u00e1ch b\u00ean d\u01b0\u1edbi",
+   "fieldname": "register_date",
    "fieldtype": "Date",
-   "label": "Register Date For Vegetarian Meal"
+   "in_list_view": 1,
+   "label": "Register Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-08 13:03:42.286673",
+ "modified": "2025-05-08 15:34:24.372932",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "Vegetarian Meal",
