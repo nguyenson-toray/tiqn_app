@@ -1,12 +1,22 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "allow_import": 1,
+ "autoname": "format:VM-{line_team}-{YY}{MM}{DD}-{##}",
  "creation": "2025-05-06 14:46:03.676178",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_hmyt",
-  "amended_from"
+  "amended_from",
+  "current_user",
+  "posting_date",
+  "register_date_for_vegetarian_meal",
+  "column_break_ekdk",
+  "employee_id",
+  "full_name",
+  "column_break_qser",
+  "line_team",
+  "grade"
  ],
  "fields": [
   {
@@ -22,16 +32,69 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "current_user",
+   "fieldtype": "Link",
+   "label": "Curent User",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qser",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "label": "Employee ID",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_id.employee_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fetch_from": "employee_id.custom_line_team",
+   "fieldname": "line_team",
+   "fieldtype": "Data",
+   "label": "Line Team"
+  },
+  {
+   "fieldname": "column_break_ekdk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee_id.grade",
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "label": "Grade"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "register_date_for_vegetarian_meal",
+   "fieldtype": "Date",
+   "label": "Register Date For Vegetarian Meal"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-06 14:46:03.676178",
+ "modified": "2025-05-08 13:03:42.286673",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "Vegetarian Meal",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -43,8 +106,21 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
    "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "TIQN Registration",
+   "share": 1,
    "write": 1
   }
  ],

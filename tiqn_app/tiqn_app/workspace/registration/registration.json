@@ -1,0 +1,46 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"kb3XPLg8lb\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"NUsTQ4-NeA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal\",\"col\":3}},{\"id\":\"r3xmz_dQ3v\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"HsiteVBPmx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"d_KVM1gsf9\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"JVu8-FJZCu\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}}]",
+ "creation": "2025-05-06 16:53:48.586743",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "milestone",
+ "idx": 1,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "Registration",
+ "links": [],
+ "modified": "2025-05-08 12:33:48.668696",
+ "modified_by": "Administrator",
+ "module": "TIQN App",
+ "name": "Registration",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "Employee"
+  },
+  {
+   "role": "TIQN Registration"
+  }
+ ],
+ "sequence_id": 1.1,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Vegetarian Meal",
+   "link_to": "Vegetarian Meal",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Registration"
+}
