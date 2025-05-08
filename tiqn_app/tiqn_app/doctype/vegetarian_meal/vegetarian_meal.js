@@ -3,7 +3,26 @@
 
 frappe.ui.form.on("Vegetarian Meal", {
     refresh(frm) {
+        // Set filter for employee_id in child table based on line_team
+        frm.set_query("employee_id", "detail", function () {
+            return {
+                filters: {
+                    "custom_line_team": frm.doc.line_team
+                }
+            };
+        });
+    },
+    register_date: function (frm) {
+        if (frm.doc.register_date) {
+            // Loop through all rows in detail table
+            $.each(frm.doc.detail || [], function (i, detail) {
+                if (!detail.date) {
+                    detail.date = frm.doc.register_date;
+                }
 
+            });
+            frm.refresh_field("detail");
+        }
     },
     onload: function (frm) {
         if (frm.doc.__islocal) {
