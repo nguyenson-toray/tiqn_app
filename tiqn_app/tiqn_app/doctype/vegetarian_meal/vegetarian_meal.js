@@ -4,23 +4,18 @@
 frappe.ui.form.on("Vegetarian Meal", {
     refresh(frm) {
         // Set filter for employee_id in child table based on line_team
-        frm.set_query("employee_id", "detail", function () {
-            return {
-                filters: {
-                    "custom_line_team": frm.doc.line_team
-                }
-            };
-        });
+
+
     },
     register_date: function (frm) {
         if (frm.doc.register_date) {
             // Loop through all rows in detail table
             $.each(frm.doc.detail || [], function (i, detail) {
-                if (!detail.date) {
-                    detail.date = frm.doc.register_date;
-                }
+                detail.register_date = frm.doc.register_date;
+                console.log('set date' + frm.doc.register_date);
 
             });
+
             frm.refresh_field("detail");
         }
     },
@@ -44,6 +39,16 @@ frappe.ui.form.on("Vegetarian Meal", {
                         });
                     }
                 });
+        }
+    }
+});
+frappe.ui.form.on("Vegetarian Meal Detail", {
+    detail_add: function (frm, cdt, cdn) {
+        var row = locals[cdt][cdn];
+        if (frm.doc.register_date) {
+            row.register_date = frm.doc.register_date;
+            frm.refresh_field("detail");
+            console.log('Set register_date for new row: ' + frm.doc.register_date);
         }
     }
 });
