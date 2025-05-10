@@ -7,9 +7,56 @@ app_license = "mit"
 
 # Apps
 # ------------------
-fixtures = [
-    {"doctype": "Workspace", "filters": [["name", "in", ["Registration"]]]}
+# Hướng dẫn sử dụng fixtures để export từ site A và import vào site B
+#  Site A
+    # 1 : Chỉnh sửa Doctype, field, workspace Web UI
+    # 2 : export ra thư mục fixture chứa các file json : bench --site erp-sonnt.tiqn.local export-fixtures
+    #     Commit & push lên git
+#  Site B
+    # 1 : Pull code về
+    # 2 : Chạy lệnh bench --site erp.tiqn.local clear-cache
+    # 3 : Chạy lệnh bench --site erpt.tiqn.local migrate    
+    # hoặc cho 1 app cụ thể : bench --site erp.tiqn.local import-fixtures --app customize_erpnext  
+fixtures = [ 
+     {
+        "doctype": "Custom Field",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    # "Stock Entry-custom_%",
+                    # "Sales Order Item-custom_%", 
+                    # "Sales Order-section_break_%",
+                    # "Sales Order-sum_by_country", 
+                    # "Sales Order-sum_by_delivery_date", 
+                    # "Sales Order-sum_by_sku",
+                    # "BOM Item-custom_%", 
+                    # "Material Request Item-custom_%",
+                    # "Production Plan-custom_%",
+                    # "Employee-custom_%", 
+                ]
+            ]
+        ]
+    },
+    # Custom Workspace
+    {
+        "doctype": "Workspace",
+        "filters": [
+            ["name", "in", ["Registration"]]
+        ]
+    },
+    # Property Setter
+    {
+        "doctype": "Property Setter",
+        "filters": [
+            ["doc_type", "in", [
+                # "Sales Invoice", "Purchase Invoice"
+                ]]
+        ]
+    }
 ]
+
 
 # required_apps = []
 
