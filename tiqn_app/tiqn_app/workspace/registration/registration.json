@@ -1,52 +1,52 @@
 {
- "charts": [
-  {
-   "chart_name": "Vegetarian Meal Daily Quantity",
-   "label": "Vegetarian Meal Daily Quantity"
-  }
- ],
- "content": "[{\"id\":\"kb3XPLg8lb\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"NUsTQ4-NeA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0110\u0103ng k\u00fd c\u01a1m chay\",\"col\":3}},{\"id\":\"r3xmz_dQ3v\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"HsiteVBPmx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"d_KVM1gsf9\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"JVu8-FJZCu\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"_nYaOgXUQX\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Vegetarian Meal Daily Quantity\",\"col\":12}},{\"id\":\"V94L3xBCMD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"B\u00e1o c\u00e1o t\u1ed5ng h\u1ee3p c\u01a1m chay\",\"col\":3}}]",
- "creation": "2025-05-09 14:31:12.160710",
- "custom_blocks": [],
- "docstatus": 0,
- "doctype": "Workspace",
- "for_user": "",
- "hide_custom": 0,
- "icon": "milestone",
- "idx": 0,
- "indicator_color": "",
- "is_hidden": 0,
- "label": "Registration",
- "links": [],
- "modified": "2025-05-09 14:52:29.770429",
- "modified_by": "Administrator",
- "module": "TIQN App",
- "name": "Registration",
- "number_cards": [],
- "owner": "Administrator",
- "parent_page": "",
- "public": 1,
- "quick_lists": [],
- "restrict_to_domain": "",
- "roles": [],
- "sequence_id": 1.1,
- "shortcuts": [
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "\u0110\u0103ng k\u00fd c\u01a1m chay",
-   "link_to": "Vegetarian Meal",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "B\u00e1o c\u00e1o t\u1ed5ng h\u1ee3p c\u01a1m chay",
-   "link_to": "Daily Quantity",
-   "report_ref_doctype": "Vegetarian Meal",
-   "type": "Report"
-  }
- ],
- "title": "Registration"
+    "charts": [
+        {
+            "chart_name": "Vegetarian Meal Daily Quantity",
+            "label": "Vegetarian Meal Chart - Daily Quantity"
+        }
+    ],
+    "content": "[{\"id\":\"kb3XPLg8lb\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"NUsTQ4-NeA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal\",\"col\":3}},{\"id\":\"r3xmz_dQ3v\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"HsiteVBPmx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"d_KVM1gsf9\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"JVu8-FJZCu\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"q6P1K---VJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal Report - Daily Quantity\",\"col\":3}},{\"id\":\"SFLvXJEBlX\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Vegetarian Meal Chart - Daily Quantity\",\"col\":12}}]",
+    "creation": "2025-05-10 14:17:36.865663",
+    "custom_blocks": [],
+    "docstatus": 0,
+    "doctype": "Workspace",
+    "for_user": "",
+    "hide_custom": 0,
+    "icon": "milestone",
+    "idx": 0,
+    "indicator_color": "",
+    "is_hidden": 0,
+    "label": "Registration",
+    "links": [],
+    "modified": "2025-05-10 14:20:00.191703",
+    "modified_by": "Administrator",
+    "module": "TIQN App",
+    "name": "Registration",
+    "number_cards": [],
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "quick_lists": [],
+    "restrict_to_domain": "",
+    "roles": [],
+    "sequence_id": 1.1,
+    "shortcuts": [
+        {
+            "color": "Grey",
+            "doc_view": "List",
+            "label": "Vegetarian Meal",
+            "link_to": "Vegetarian Meal",
+            "stats_filter": "[]",
+            "type": "DocType"
+        },
+        {
+            "color": "Grey",
+            "doc_view": "List",
+            "label": "Vegetarian Meal Report - Daily Quantity",
+            "link_to": "Daily Quantity",
+            "report_ref_doctype": "Vegetarian Meal",
+            "type": "Report"
+        }
+    ],
+    "title": "Registration"
 }
