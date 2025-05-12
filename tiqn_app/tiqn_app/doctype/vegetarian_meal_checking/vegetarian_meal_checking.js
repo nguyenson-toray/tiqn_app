@@ -24,7 +24,7 @@ frappe.ui.form.on("Vegetarian Meal Checking", {
     },
     scan_employee_id(frm) {
         if (frm.doc.scan_employee_id) {
-            frappe.msgprint(__("Employee : {0}", [frm.doc.scan_employee_id]));
+
 
             // Lấy thông tin của nhân viên
             frappe.db.get_value("Employee", { employee: frm.doc.scan_employee_id }, ["employee_name", "custom_line_team"], (r) => {
@@ -48,6 +48,18 @@ frappe.ui.form.on("Vegetarian Meal Checking", {
                             // Refresh để hiển thị dữ liệu mới
                             frm.refresh_field('detail');
 
+                            if (registed) {
+                                frappe.show_alert({
+                                    message: __(r.employee_name + " Already Registed on " + frm.doc.register_date),
+                                    indicator: 'green'
+                                }, 5);
+                            }
+                            else {
+                                frappe.show_alert({
+                                    message: __(r.employee_name + " Not Registed on " + frm.doc.register_date),
+                                    indicator: 'red'
+                                }, 5);
+                            }
                             // Xóa giá trị scan_employee_id để sẵn sàng cho lần quét tiếp theo
                             frm.set_value('scan_employee_id', '');
                         }
