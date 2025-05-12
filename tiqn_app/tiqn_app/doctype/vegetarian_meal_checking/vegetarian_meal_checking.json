@@ -1,0 +1,150 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:VM-{line_team}-{YY}{MM}{DD}-{##}",
+ "creation": "2025-05-12 10:31:18.739202",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_hmyt",
+  "amended_from",
+  "posting_date",
+  "register_date",
+  "column_break_ekdk",
+  "current_user",
+  "employee_id",
+  "full_name",
+  "section_break_znue",
+  "scan_employee_id",
+  "section_break_rifa",
+  "detail"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_hmyt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Vegetarian Meal",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "current_user",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Curent User",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting date",
+   "read_only": 1
+  },
+  {
+   "description": "N\u1ebfu ch\u1ecdn th\u00ec s\u1ebd \u00e1p d\u1ee5ng cho to\u00e0n b\u1ed9 danh s\u00e1ch b\u00ean d\u01b0\u1edbi",
+   "fieldname": "register_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Register Date"
+  },
+  {
+   "fieldname": "column_break_ekdk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "label": "Employee ID",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_id.employee_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "section_break_rifa",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "detail",
+   "fieldtype": "Table",
+   "ignore_user_permissions": 1,
+   "label": "Detail",
+   "options": "Vegetarian Meal Detail Checking"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Vegetarian Meal",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_znue",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "scan_employee_id",
+   "fieldtype": "Data",
+   "label": "Scan Employee ID",
+   "options": "Barcode"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-05-12 10:38:16.710958",
+ "modified_by": "Administrator",
+ "module": "TIQN App",
+ "name": "Vegetarian Meal Checking",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "TIQN Registration",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
