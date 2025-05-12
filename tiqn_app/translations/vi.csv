@@ -2,15 +2,39 @@ Registration, Đăng ký,
 Employee ID, MSNV
 Vegetarian Meal, Suất ăn chay,
 Register Date, Ngày đăng ký
-Posting date, Ngày tạo
-Detail, Chi tiết
-Vegetarian Meal Chart - Daily Quantity, Biểu đồ suất ăn chay - Số lượng hàng ngày
-Vegetarian Meal Report - Daily Quantity, Báo cáo suất ăn chay - Số lượng hàng ngày
-Reports & Masters, Báo cáo
+Posting date, Ngày tạo,
+Detail, Chi tiết,
+Vegetarian Meal Chart - Daily Quantity, Biểu đồ cơm chay - Số lượng hàng ngày,
+Vegetarian Meal Report - Daily Quantity, Báo cáo cơm chay - Số lượng hàng ngày,
+Masters,Danh mục,
+Reports,Báo cáo,
+Outgoing Salary,Lương chi trả,
+Transactions & Reports,Giao dịch & Báo cáo,
+Payroll Reports,Báo cáo bảng lương,
+Deduction Reports,Báo cáo khấu trừ,
+Salary Withholding,Khấu trừ lương,
+Income Tax Computation,Tính toán thuế thu nhập,
+Draft,Bản nháp,
+You haven't created a,Bạn chưa tạo một,
+yet,nào,
+Clear filters to see all,Xóa bộ lọc để xem tất cả,
+No Employee Advance found with matching filters,Không tìm thấy Tạm ứng nhân viên phù hợp với bộ lọc,
+Masters & Reports,Báo cáo & Danh mục,
+Reports & Masters,Báo cáo,
+Purpose & Amount,Mục đích & Số tiền,
+Repay Unclaimed Amount from Salary,Hoàn trả khoản chưa nhận từ lương,
+Amount of expense,Số tiền chi phí,
+Exemption,Miễn trừ,
+Benefits,Phúc lợi,
+{0} Draft,{0} Bản nháp,
+Draft,Bản nháp,
+draft,bản nháp,
+Transactions & Reports,Giao dịch & Báo cáo,
+Reports & Transactions,Giao dịch & Báo cáo, 
+"already registered for date {4}", "đã đăng ký cho ngày {4}"
 Vegetarian Meal Report - List Register, Báo cáo suất ăn chay - Danh sách đăng ký
 {0} Already Registed on {1}, {0} Đã đăng ký {1}
 {0}  Not Registed on {1}, {0} Chưa đăng ký {1}
 Scan Employee ID, Quét MSNV
 Vegetarian Meal Checking, Kiểm tra thông tin đăng ký suất ăn chay
 Duplicate entry found at row {0} and {1}. Employee {2} ({3}) Date {4}. The duplicate row will be removed., Đã tìm thấy mục nhập trùng lặp ở hàng {0} và {1}. Nhân viên {2} ({3}) Ngày {4}. Hàng trùng lặp sẽ bị xóa.
-"already registered for date {4}", "đã đăng ký cho ngày {4}"
