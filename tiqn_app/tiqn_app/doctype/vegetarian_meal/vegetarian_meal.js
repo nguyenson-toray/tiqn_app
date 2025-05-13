@@ -3,8 +3,6 @@
 
 frappe.ui.form.on("Vegetarian Meal", {
     refresh(frm) {
-        // Set filter for employee_id in child table based on line_team
-
 
     },
     register_date: function (frm) {

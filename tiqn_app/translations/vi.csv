@@ -12,3 +12,5 @@ Vegetarian Meal Report - List Register, Báo cáo suất ăn chay - Danh sách �
 {0}  Not Registed on {1}, {0} Chưa đăng ký {1}
 Scan Employee ID, Quét MSNV
 Vegetarian Meal Checking, Kiểm tra thông tin đăng ký suất ăn chay
+Duplicate entry found at row {0} and {1}. Employee {2} ({3}) Date {4}. The duplicate row will be removed., Đã tìm thấy mục nhập trùng lặp ở hàng {0} và {1}. Nhân viên {2} ({3}) Ngày {4}. Hàng trùng lặp sẽ bị xóa.
+"already registered for date {4}", "đã đăng ký cho ngày {4}"
