@@ -9,9 +9,9 @@
    "width": 0
   },
   {
-   "fieldname": "line_team",
+   "fieldname": "group",
    "fieldtype": "Select",
-   "label": "Line Team",
+   "label": "Group",
    "width": 0
   },
   {
@@ -47,9 +47,9 @@
    "wildcard_filter": 0
   },
   {
-   "fieldname": "Line Team",
+   "fieldname": "Group",
    "fieldtype": "Select",
-   "label": "Line Team",
+   "label": "Group",
    "mandatory": 0,
    "wildcard_filter": 0
   }
@@ -57,7 +57,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2025-05-10 14:52:20.359271",
+ "modified": "2025-05-13 08:01:15.729569",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "Vegetarian Meal - List Register",
