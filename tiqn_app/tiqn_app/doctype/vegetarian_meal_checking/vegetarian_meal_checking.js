@@ -24,6 +24,12 @@ frappe.ui.form.on("Vegetarian Meal Checking", {
     scan_employee_id(frm) {
         if (frm.doc.scan_employee_id) {
             // Sử dụng hàm get_employee_details để lấy thông tin nhân viên
+
+            // Kiểm tra nếu là chuỗi số có độ dài 4
+            if (frm.doc.scan_employee_id.length === 4 && !frm.doc.scan_employee_id.startsWith('TIQN')) {
+                // Thêm tiền tố "TIQN-" và cập nhật giá trị
+                frm.doc.scan_employee_id = 'TIQN-' + frm.doc.scan_employee_id;
+            }
             frappe.call({
                 method: "tiqn_app.tiqn_app.doctype.vegetarian_meal_checking.vegetarian_meal_checking.get_employee_details",
                 args: {
