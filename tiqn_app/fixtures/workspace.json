@@ -20,7 +20,7 @@
   "is_hidden": 0,
   "label": "Registration",
   "links": [],
-  "modified": "2025-05-12 15:02:53.813913",
+  "modified": "2025-05-13 12:50:07.921896",
   "module": "TIQN App",
   "name": "Registration",
   "number_cards": [],
@@ -29,7 +29,7 @@
   "quick_lists": [],
   "restrict_to_domain": "",
   "roles": [],
-  "sequence_id": 1.1,
+  "sequence_id": 2.0,
   "shortcuts": [
    {
     "color": "Grey",
