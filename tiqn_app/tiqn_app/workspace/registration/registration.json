@@ -5,8 +5,8 @@
    "label": "Vegetarian Meal Chart - Daily Quantity"
   }
  ],
- "content": "[{\"id\":\"kb3XPLg8lb\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"NUsTQ4-NeA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal\",\"col\":3}},{\"id\":\"dpVplxyGzs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal Checking\",\"col\":3}},{\"id\":\"r3xmz_dQ3v\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"HsiteVBPmx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"d_KVM1gsf9\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"JVu8-FJZCu\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"Zr_eJ5IJdc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal Report - List Register\",\"col\":3}},{\"id\":\"3ZOceBbIJh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal Chart - Daily Quantity\",\"col\":3}},{\"id\":\"uu8PKBkfKO\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Vegetarian Meal Chart - Daily Quantity\",\"col\":12}}]",
- "creation": "2025-05-13 08:41:03.978147",
+ "content": "[{\"id\":\"kb3XPLg8lb\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"NUsTQ4-NeA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal\",\"col\":3}},{\"id\":\"r3xmz_dQ3v\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"dpVplxyGzs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal Checking\",\"col\":3}},{\"id\":\"fUYyGlD5Gi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Print Vegetarian Meal Registration Form\",\"col\":3}},{\"id\":\"HsiteVBPmx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"d_KVM1gsf9\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"JVu8-FJZCu\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"Zr_eJ5IJdc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal Report - List Register\",\"col\":3}},{\"id\":\"3ZOceBbIJh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vegetarian Meal Chart - Daily Quantity\",\"col\":3}},{\"id\":\"uu8PKBkfKO\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Vegetarian Meal Chart - Daily Quantity\",\"col\":12}}]",
+ "creation": "2025-05-14 14:37:27.028724",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -18,7 +18,7 @@
  "is_hidden": 0,
  "label": "Registration",
  "links": [],
- "modified": "2025-05-13 12:50:07.921896",
+ "modified": "2025-05-14 14:38:25.624476",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "Registration",
@@ -38,6 +38,14 @@
    "link_to": "Vegetarian Meal - List Register",
    "report_ref_doctype": "Vegetarian Meal",
    "type": "Report"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "label": "Print Vegetarian Meal Registration Form",
+   "link_to": "Print Vegetarian Meal Registration Form",
+   "stats_filter": "[]",
+   "type": "DocType"
   },
   {
    "color": "Grey",
