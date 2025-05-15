@@ -26,6 +26,20 @@ frappe.ui.form.on("Vegetarian Meal", {
                 }
             }
         });
+    }, before_save: function (frm) {
+        // Remove empty rows before saving
+        if (frm.doc.detail && frm.doc.detail.length > 0) {
+            // Filter out rows with missing employee_id or register_date
+            let valid_rows = frm.doc.detail.filter(row =>
+                row.employee_id && row.register_date
+            );
+
+            // If any rows were removed, update the table
+            if (valid_rows.length < frm.doc.detail.length) {
+                frm.doc.detail = valid_rows;
+                frm.refresh_field("detail");
+            }
+        }
     },
     type_input: function (frm) {
         if (frm.doc.type_input === 'Select') {
