@@ -98,3 +98,34 @@ class VegetarianMeal(Document):
                     frappe.format(row.register_date, {"fieldtype": "Date"}),
                     detail_existing[0].parent
                 ))
+
+ 
+@frappe.whitelist()
+def get_groups_for_select():
+    """Get list of groups for the select dropdown (bypasses permission check)"""
+    # Use frappe.db.sql directly with ignore_permissions=True
+    groups = frappe.db.sql("""
+        SELECT DISTINCT name 
+        FROM `tabGroup` 
+        ORDER BY name
+    """, as_dict=1)
+    
+    # Return as a simple list of names
+    return [group.name for group in groups]
+
+@frappe.whitelist()
+def get_employees_by_group_name(group_name):
+    """Get employees by group (bypasses permission check)"""
+    if not group_name:
+        return []
+        
+    # Use frappe.db.sql directly with ignore_permissions=True
+    employees = frappe.db.sql("""
+        SELECT name, employee_name
+        FROM `tabEmployee`
+        WHERE custom_group = %s
+        AND status = 'Active'
+        ORDER BY employee_name
+    """, (group_name), as_dict=1)
+    
+    return employees
