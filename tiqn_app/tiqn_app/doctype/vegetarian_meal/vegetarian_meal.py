@@ -125,7 +125,7 @@ def get_employees_by_group_name(group_name):
         FROM `tabEmployee`
         WHERE custom_group = %s
         AND status = 'Active'
-        ORDER BY employee_name
+        ORDER BY name
     """, (group_name), as_dict=1)
     
-    return employees
+    return employees 

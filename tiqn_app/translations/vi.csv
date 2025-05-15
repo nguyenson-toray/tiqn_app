@@ -31,7 +31,7 @@ Draft,Bản nháp,
 draft,bản nháp,
 Transactions & Reports,Giao dịch & Báo cáo,
 Reports & Transactions,Giao dịch & Báo cáo, 
-"already registered for date {4}", "đã đăng ký cho ngày {4}"
+"already registered for date {4}", "đã đăng ký cho ngày {4}",
 Vegetarian Meal Report - List Register, Báo cáo suất ăn chay - Danh sách đăng ký
 {0} Already Registed on {1}, {0} Đã đăng ký {1}
 {0}  Not Registed on {1}, {0} Chưa đăng ký {1}
@@ -44,3 +44,13 @@ Get Employee List, Lấy danh sách nhân viên,
 New Vegetarian Meal, Đăng ký suất ăn chay mới,
 Manual entry, Nhập liệu thủ công,
 Select, Chọn từ danh sách,
+Please select at least one employee, Vui lòng chọn ít nhất một nhân viên,
+Warning: Employee {0} has already registered for a vegetarian meal on {1} in document {2}, Cảnh báo: Nhân viên {0} đã đăng ký suất ăn chay vào {1} trong tài liệu {2},
+Register date cannot be in the past. Please select today or a future date., Ngày đăng ký không thể ở trong quá khứ. Vui lòng chọn ngày hôm nay hoặc một ngày trong tương lai.,
+No Employee record found for current user, Không tìm thấy hồ sơ nhân viên cho người dùng hiện tại,
+If selected - date will apply to the entire list below., Nếu được chọn - ngày sẽ áp dụng cho toàn bộ danh sách bên dưới.,
+Invalid Date, Ngày không hợp lệ,
+Creator Information, Thông tin người tạo,
+Registration information, Thông tin đăng ký,
+Detail list, Danh sách chi tiết,
+Warning: Employee {0} has already registered for a vegetarian meal on {1} in document {2}, Cảnh báo: Nhân viên {0} đã đăng ký suất ăn chay vào {1} trong tài liệu {2}

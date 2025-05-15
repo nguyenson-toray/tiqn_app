@@ -29,7 +29,8 @@
  "fields": [
   {
    "fieldname": "section_break_hmyt",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Creator Information"
   },
   {
    "fieldname": "amended_from",
@@ -56,6 +57,7 @@
   {
    "fieldname": "employee_id",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Employee ID",
    "options": "Employee",
    "read_only": 1
@@ -80,6 +82,7 @@
    "fetch_from": "employee_id.grade",
    "fieldname": "grade",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Grade"
   },
   {
@@ -90,7 +93,7 @@
    "read_only": 1
   },
   {
-   "description": "N\u1ebfu ch\u1ecdn th\u00ec s\u1ebd \u00e1p d\u1ee5ng cho to\u00e0n b\u1ed9 danh s\u00e1ch b\u00ean d\u01b0\u1edbi",
+   "description": "If selected - date will apply to the entire list below.",
    "fieldname": "register_date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -105,12 +108,13 @@
    "fieldname": "detail",
    "fieldtype": "Table",
    "ignore_user_permissions": 1,
-   "label": "Detail",
+   "label": "Detail list",
    "options": "Vegetarian Meal Detail"
   },
   {
    "fieldname": "section_break_ebdc",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Registration information"
   },
   {
    "default": "Select",
@@ -130,7 +134,9 @@
   {
    "fieldname": "select_group",
    "fieldtype": "Select",
-   "label": "Select Group"
+   "label": "Select Group",
+   "sort_options": 1,
+   "translatable": 1
   },
   {
    "fieldname": "get_employee_list",
@@ -142,7 +148,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-15 14:16:51.235232",
+ "modified": "2025-05-15 16:47:25.756255",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "Vegetarian Meal",

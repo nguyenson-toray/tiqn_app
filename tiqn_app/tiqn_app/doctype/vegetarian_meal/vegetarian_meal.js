@@ -8,25 +8,14 @@ frappe.ui.form.on("Vegetarian Meal", {
             method: "tiqn_app.tiqn_app.doctype.vegetarian_meal.vegetarian_meal.get_groups_for_select",
             callback: function (r) {
                 if (r.message && r.message.length > 0) {
-                    // Extract unique group values
                     console.log(r.message);
-                    let options = [''];
-                    r.message.forEach(group => {
-                        if (group && !options.includes(group)) {
-                            options.push(group);
-                        }
-                    });
-
-                    frm.set_df_property('select_group', 'options', options.join('\n'));
-
-                    // Default select_group to match group if available
-                    if (frm.doc.group && options.includes(frm.doc.group)) {
-                        frm.set_value('select_group', frm.doc.group);
-                    }
+                    frm.set_df_property('select_group', 'options', r.message.join('\n'));
+                    frm.refresh_field('select_group');
                 }
             }
         });
-    }, before_save: function (frm) {
+    },
+    before_save: function (frm) {
         // Remove empty rows before saving
         if (frm.doc.detail && frm.doc.detail.length > 0) {
             // Filter out rows with missing employee_id or register_date
@@ -82,7 +71,7 @@ frappe.ui.form.on("Vegetarian Meal", {
                 },
                 callback: function (r) {
                     const employees = r.message || [];
-
+                    console.log(employees);
                     if (employees.length === 0) {
                         frappe.msgprint(__('No employees found in the selected group'));
                         return;
@@ -93,90 +82,139 @@ frappe.ui.form.on("Vegetarian Meal", {
                         title: __('Select Employees'),
                         fields: [
                             {
+                                fieldtype: 'Date',
+                                fieldname: 'register_date',
+                                label: __('Register Date'),
+                                default: frm.doc.register_date || frappe.datetime.add_days(frappe.datetime.get_today(), 1),
+                                reqd: true
+                            },
+                            {
+                                fieldtype: 'Column Break',
+                                fieldname: 'button_column'
+                            },
+                            {
+                                fieldtype: 'HTML',
+                                fieldname: 'custom_buttons',
+                                options: `<div style="text-align: right; margin-top: 25px;">
+                                        <button class="btn btn-primary custom-ok-btn">${__('OK')}</button>
+                                     </div>`
+                            },
+                            {
+                                fieldtype: 'Section Break',
+                                fieldname: 'footer_section'
+                            },
+                            {
                                 fieldtype: 'HTML',
                                 fieldname: 'employee_list'
-                            }
+                            },
+                            {
+                                fieldtype: 'Section Break',
+                                fieldname: 'footer_section'
+                            },
+                            {
+                                fieldtype: 'Column Break',
+                                fieldname: 'date_column'
+                            },
+
                         ],
                         size: 'large', // Make dialog large
-                        primary_action_label: 'OK',
-                        primary_action: function () {
-                            // Get selected employees
-                            let selected = [];
-                            dialog.$wrapper.find('input[type=checkbox]:checked').each(function () {
-                                let employee_id = $(this).data('employee');
-                                let employee_name = $(this).data('name');
+                        // Ẩn nút OK mặc định
+                        primary_action_label: '',
+                        primary_action: function () { }
+                    });
 
-                                selected.push({
-                                    employee_id: employee_id,
-                                    full_name: employee_name,
-                                    register_date: frm.doc.register_date || frappe.datetime.get_today()
-                                });
+                    // Xử lý sự kiện click cho nút OK tùy chỉnh
+                    dialog.custom_action = function () {
+                        // Get the selected date from dialog
+                        let selected_date = dialog.get_value('register_date');
+
+                        // Validate the selected date is not in the past
+                        let today = frappe.datetime.get_today();
+                        if (selected_date < today) {
+                            frappe.msgprint({
+                                title: __('Invalid Date'),
+                                indicator: 'red',
+                                message: __('Register date cannot be in the past. Please select today or a future date.')
                             });
+                            return;
+                        }
 
-                            if (selected.length === 0) {
-                                frappe.msgprint(__('Please select at least one employee'));
-                                return;
-                            }
+                        // Get selected employees
+                        let selected = [];
+                        dialog.$wrapper.find('input[type=checkbox]:checked').each(function () {
+                            let employee_id = $(this).data('employee');
+                            let employee_name = $(this).data('name');
 
-                            // Add selected employees to detail table
-                            selected.forEach(emp => {
-                                // Check if employee already exists in the table
-                                let exists = false;
-                                (frm.doc.detail || []).forEach(row => {
-                                    if (row.employee_id === emp.employee_id) {
-                                        exists = true;
-                                    }
-                                });
+                            selected.push({
+                                employee_id: employee_id,
+                                full_name: employee_name,
+                                register_date: selected_date
+                            });
+                        });
 
-                                if (!exists) {
-                                    let row = frm.add_child('detail');
-                                    row.employee_id = emp.employee_id;
-                                    row.full_name = emp.full_name;
-                                    row.register_date = emp.register_date;
+                        if (selected.length === 0) {
+                            frappe.msgprint(__('Please select at least one employee'));
+                            return;
+                        }
 
-                                    // Check for duplicates in submitted records
-                                    check_for_submitted_duplicates(frm, row.employee_id, row.register_date, frm.doc.detail.length - 1);
+                        // Add selected employees to detail table
+                        selected.forEach(emp => {
+                            // Check if employee already exists in the table
+                            let exists = false;
+                            (frm.doc.detail || []).forEach(row => {
+                                if (row.employee_id === emp.employee_id) {
+                                    exists = true;
                                 }
                             });
 
-                            frm.refresh_field('detail');
-                            dialog.hide();
-                        }
-                    });
+                            if (!exists) {
+                                let row = frm.add_child('detail');
+                                row.employee_id = emp.employee_id;
+                                row.full_name = emp.full_name;
+                                row.register_date = emp.register_date;
+
+                                // Check for duplicates in submitted records
+                                check_for_submitted_duplicates(frm, row.employee_id, row.register_date, frm.doc.detail.length - 1);
+                            }
+                        });
+
+                        frm.refresh_field('detail');
+                        dialog.hide();
+                    };
 
                     // Create HTML table with three columns
                     let html = `
-                        <div style="height: 600px; overflow-y: auto;">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 30px;">
-                                            <input type="checkbox" id="select-all">
-                                        </th>
-                                        <th>Employee ID</th>
-                                        <th>Employee Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                    `;
+                    <div style="height: 600px; overflow-y: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30px;">
+                                        <input type="checkbox" id="select-all">
+                                    </th>
+                                    <th>Employee ID</th>
+                                    <th>Full name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
 
                     employees.forEach(emp => {
                         html += `
-                            <tr>
-                                <td>
-                                    <input type="checkbox" class="employee-check" data-employee="${emp.name}" data-name="${emp.employee_name}">
-                                </td>
-                                <td>${emp.name}</td>
-                                <td>${emp.employee_name}</td>
-                            </tr>
-                        `;
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="employee-check" data-employee="${emp.name}" data-name="${emp.employee_name}">
+                            </td>
+                            <td>${emp.name}</td>
+                            <td>${emp.employee_name}</td>
+                        </tr>
+                    `;
                     });
 
                     html += `
-                                </tbody>
-                            </table>
-                        </div>
-                    `;
+                            </tbody>
+                        </table>
+                    </div>
+                `;
 
                     dialog.fields_dict.employee_list.$wrapper.html(html);
 
@@ -186,7 +224,22 @@ frappe.ui.form.on("Vegetarian Meal", {
                         dialog.$wrapper.find('.employee-check').prop('checked', checked);
                     });
 
+                    // Ẩn footer mặc định
+                    dialog.$wrapper.find('.modal-footer').hide();
+
+                    // Gắn sự kiện click cho nút OK tùy chỉnh
+                    dialog.$wrapper.find('.custom-ok-btn').on('click', function () {
+                        dialog.custom_action();
+                    });
+
                     dialog.show();
+
+                    // Set min date for register_date field in dialog
+                    if (dialog.fields_dict.register_date && dialog.fields_dict.register_date.datepicker) {
+                        dialog.fields_dict.register_date.datepicker.update({
+                            minDate: new Date(frappe.datetime.get_today())
+                        });
+                    }
                 }
             });
         });
@@ -217,7 +270,6 @@ frappe.ui.form.on("Vegetarian Meal", {
         set_datepicker_constraints(frm)
         if (frm.doc.__islocal) {
             frm.set_value('current_user', frappe.session.user);
-            frm.set_value('register_date', frappe.datetime.add_days(frappe.datetime.get_today(), 1));
         }
         if (!frm.doc.current_user || frm.doc.__islocal) {
             frm.set_value('current_user', frappe.session.user);
