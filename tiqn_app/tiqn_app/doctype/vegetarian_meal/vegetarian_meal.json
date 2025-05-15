@@ -8,10 +8,10 @@
  "field_order": [
   "section_break_hmyt",
   "amended_from",
-  "current_user",
   "posting_date",
   "register_date",
   "column_break_ekdk",
+  "current_user",
   "employee_id",
   "full_name",
   "column_break_qser",
@@ -95,6 +95,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_bulk_edit": 1,
    "fieldname": "detail",
    "fieldtype": "Table",
    "ignore_user_permissions": 1,
@@ -106,7 +107,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-12 15:01:19.672759",
+ "modified": "2025-05-15 12:21:29.910218",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "Vegetarian Meal",

@@ -9,7 +9,7 @@
   "column_break_uaij",
   "to_date",
   "column_break_enqh",
-  "group",
+  "employee_group",
   "column_break_gqhk",
   "total_quantity",
   "section_break_jnew",
@@ -40,12 +40,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "group",
-   "fieldtype": "Select",
-   "label": "Group",
-   "options": "\nAll Groups"
-  },
-  {
    "fieldname": "section_break_jnew",
    "fieldtype": "Section Break"
   },
@@ -66,12 +60,17 @@
    "fieldtype": "Int",
    "label": "Total Quantity",
    "read_only": 1
+  },
+  {
+   "fieldname": "employee_group",
+   "fieldtype": "Select",
+   "label": "Group"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-14 14:39:37.958016",
+ "modified": "2025-05-15 12:39:59.325067",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "Print Vegetarian Meal Registration Form",

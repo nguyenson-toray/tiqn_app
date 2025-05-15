@@ -38,8 +38,8 @@ frappe.query_reports["Daily Quantity"] = {
 			}
 		},
 		{
-			"fieldname": "line_team",
-			"label": __("Line Team"),
+			"fieldname": "employee_group",
+			"label": __("Group"),
 			"fieldtype": "Select",
 			"options": "\n", // Bắt đầu với một option trống
 			"reqd": 0
@@ -47,21 +47,21 @@ frappe.query_reports["Daily Quantity"] = {
 	],
 
 	onload: function (report) {
-		// Tải danh sách line_team khi báo cáo được tải
+		// Tải danh sách group khi báo cáo được tải
 		frappe.call({
-			method: "tiqn_app.tiqn_app.report.daily_quantity.daily_quantity.get_line_teams",
+			method: "tiqn_app.tiqn_app.report.daily_quantity.daily_quantity.get_groups",
 			callback: function (r) {
 				if (!r.exc && r.message) {
 					let options = [""];
 					options = options.concat(r.message || []);
 
 					// Cập nhật options cho filter
-					let line_team_filter = frappe.query_report.get_filter('line_team');
-					line_team_filter.df.options = options.join("\n");
-					line_team_filter.refresh();
+					let group_filter = frappe.query_report.get_filter('employee_group');
+					group_filter.df.options = options.join("\n");
+					group_filter.refresh();
 				} else if (r.exc) {
 					console.error("Error:", r.exc);
-					frappe.msgprint(__("Không thể tải danh sách Line Team. Lỗi: ") + r.exc);
+					frappe.msgprint(__("Không thể tải danh sách Group. Lỗi: ") + r.exc);
 				}
 			}
 		});

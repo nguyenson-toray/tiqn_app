@@ -23,8 +23,8 @@ def get_columns():
             "width": 120
         },
         {
-            "label": _("Line Team"),
-            "fieldname": "line_team",
+            "label": _("Group"),
+            "fieldname": "employee_group",
             "fieldtype": "Data",
             "width": 120
         },
@@ -49,28 +49,25 @@ def get_data(filters):
     
     # Thực hiện truy vấn SQL để lấy và nhóm dữ liệu
     data = frappe.db.sql("""
-        SELECT 
-        	register_date,
-            line_team,
+        SELECT
+            register_date,
+            employee_group,
             employee_id,
-            full_name
-            
+            full_name            
         FROM 
             `tabVegetarian Meal Detail`
         WHERE
             {conditions}
         GROUP BY 
-            line_team, register_date
+           employee_group, register_date
         ORDER BY 
-            register_date DESC, line_team
+            register_date DESC, employee_group 
     """.format(conditions=conditions), filters, as_dict=1)
     
     return data
 
 def get_conditions(filters):
-    conditions = "1=1"
-    
-    # Thay đổi từ register_date thành from_date và to_date
+    conditions = "1=1" 
     if filters.get("from_date") and filters.get("to_date"):
         conditions += " AND register_date BETWEEN %(from_date)s AND %(to_date)s"
     elif filters.get("from_date"):
@@ -78,25 +75,23 @@ def get_conditions(filters):
     elif filters.get("to_date"):
         conditions += " AND register_date <= %(to_date)s"
     
-    if filters.get("line_team"):
-        conditions += " AND line_team = %(line_team)s"
+    if filters.get("employee_group"):
+        conditions += " AND employee_group = %(employee_group)s"
     
     return conditions
 
 @frappe.whitelist()
-def get_line_teams():
-    """Lấy danh sách distinct các line_team từ cơ sở dữ liệu"""
+def get_groups():
+    """Lấy danh sách distinct các group từ cơ sở dữ liệu"""
     try:
-        line_teams = frappe.get_all(
-            "Vegetarian Meal Detail",
-            fields=["distinct line_team as value"],
-            filters={"line_team": ["!=", ""]},
-            pluck="value",
-            order_by="line_team",
-            ignore_permissions=True
-        )
+        groups = frappe.db.sql("""
+            SELECT DISTINCT employee_group as value
+            FROM `tabVegetarian Meal Detail`
+            WHERE employee_group != ''
+            ORDER BY employee_group
+        """, as_dict=0)
+        return [g[0] for g in groups] 
         
-        return line_teams
     except Exception as e:
-        frappe.log_error(f"Error in get_line_teams: {str(e)}")
+        frappe.log_error(f"Error in get_groups: {str(e)}")
         return []

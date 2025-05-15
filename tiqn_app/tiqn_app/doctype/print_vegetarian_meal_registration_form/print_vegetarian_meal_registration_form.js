@@ -6,7 +6,7 @@ frappe.ui.form.on('Print Vegetarian Meal Registration Form', {
 
     refresh: function (frm) {
         // In case we need to reload the groups
-        if (!frm.fields_dict.group.df.options || frm.fields_dict.group.df.options === "") {
+        if (!frm.fields_dict.employee_group.df.options || frm.fields_dict.employee_group.df.options === "") {
             load_groups(frm);
         }
 
@@ -28,7 +28,7 @@ frappe.ui.form.on('Print Vegetarian Meal Registration Form', {
         fetch_meal_details(frm);
     },
 
-    group: function (frm) {
+    employee_group: function (frm) {
         fetch_meal_details(frm);
     }
 });
@@ -40,12 +40,12 @@ function load_groups(frm) {
         callback: function (r) {
             if (r.message && r.message.length) {
                 // Set the options for the group field
-                frm.set_df_property('group', 'options', [''].concat(r.message).join('\n'));
-                frm.refresh_field('group');
+                frm.set_df_property('employee_group', 'options', [''].concat(r.message).join('\n'));
+                frm.refresh_field('employee_group');
 
                 // Set default value to "All Groups" if nothing is selected
-                if (!frm.doc.group) {
-                    frm.set_value('group', 'All Groups');
+                if (!frm.doc.employee_group) {
+                    frm.set_value('employee_group', '');
                 }
             }
         }
@@ -64,7 +64,7 @@ function fetch_meal_details(frm) {
         args: {
             from_date: frm.doc.from_date,
             to_date: frm.doc.to_date,
-            group: frm.doc.group
+            employee_group: frm.doc.employee_group
         },
         freeze: true,
         freeze_message: __('Fetching meal details...'),
@@ -77,7 +77,7 @@ function fetch_meal_details(frm) {
                     row.employee_id = meal.employee_id;
                     row.full_name = meal.full_name;
                     row.register_date = meal.register_date;
-                    row.group = meal.group;
+                    row.employee_group = meal.employee_group;
                 });
                 frm.set_value('total_quantity', frm.doc.meal_detail ? frm.doc.meal_detail.length : 0);
 
@@ -111,7 +111,7 @@ function generate_pdf(frm) {
         args: {
             from_date: frm.doc.from_date,
             to_date: frm.doc.to_date,
-            group: frm.doc.group
+            employee_group: frm.doc.employee_group
         },
         freeze: true,
         freeze_message: __('Generating PDF...'),

@@ -25,23 +25,22 @@ class PrintVegetarianMealRegistrationForm(Document):
 
 @frappe.whitelist()
 def get_groups():
-    """
-    Fetch groups from the Group table
-    """
-    groups = frappe.db.sql("""
-        SELECT
-            name
-        FROM
-            `tabGroup`
-        ORDER BY
-            name ASC
-    """, as_dict=0)
-    
-    # Return a simple list of group names, adding "All Groups" as the first option
-    return ["All Groups"] + [group[0] for group in groups] if groups else ["All Groups"]
+    """Lấy danh sách distinct các group từ cơ sở dữ liệu"""
+    try:
+        groups = frappe.db.sql("""
+            SELECT DISTINCT employee_group as value
+            FROM `tabVegetarian Meal Detail`
+            WHERE employee_group != ''
+            ORDER BY employee_group
+        """, as_dict=0)
+        return [g[0] for g in groups] 
+        
+    except Exception as e:
+        frappe.log_error(f"Error in get_groups: {str(e)}")
+        return []
 
 @frappe.whitelist()
-def get_meal_details(from_date, to_date, group):
+def get_meal_details(from_date, to_date, employee_group):
     """
     Fetch meal details from the Vegetarian Meal Detail table
     """
@@ -49,21 +48,21 @@ def get_meal_details(from_date, to_date, group):
     if not from_date or not to_date:
         return []
     
-    # Modify the query based on whether a group is selected or "All Groups"
-    if not group or group == "All Groups":
+   
+    if not employee_group or employee_group == "":
         # Query all groups
         meal_details = frappe.db.sql("""
             SELECT 
                 employee_id, 
                 full_name, 
                 register_date, 
-                `group`
+                employee_group
             FROM 
                 `tabVegetarian Meal Detail`
             WHERE 
                 register_date BETWEEN %s AND %s
             ORDER BY 
-                `group` ASC, full_name ASC
+                employee_group ASC, full_name ASC
         """, (from_date, to_date), as_dict=1)
     else:
         # Query specific group
@@ -72,15 +71,15 @@ def get_meal_details(from_date, to_date, group):
                 employee_id, 
                 full_name, 
                 register_date, 
-                `group`
+                employee_group
             FROM 
                 `tabVegetarian Meal Detail`
             WHERE 
                 register_date BETWEEN %s AND %s
-                AND `group` = %s
+                AND employee_group = %s
             ORDER BY 
                 full_name ASC
-        """, (from_date, to_date, group), as_dict=1)
+        """, (from_date, to_date, employee_group), as_dict=1)
     
     return meal_details
 
@@ -109,10 +108,10 @@ def generate_meal_registration_pdf():
         # Get the form data from the request
         from_date = frappe.form_dict.get('from_date')
         to_date = frappe.form_dict.get('to_date')
-        group = frappe.form_dict.get('group')
+        employee_group = frappe.form_dict.get('employee_group')
         
         # Get meal details directly
-        meal_details = get_meal_details(from_date, to_date, group)
+        meal_details = get_meal_details(from_date, to_date, employee_group)
         
         if not meal_details:
             return {
@@ -344,7 +343,7 @@ def get_meal_ticket_html(meal_details):
                             date_str = ""
                     
                     # Get other fields
-                    group = item.get("group", "")
+                    employee_group = item.get("employee_group", "")
                     name = item.get("full_name", "")
                     
                     # Create populated ticket - exact format from screenshot
@@ -354,7 +353,7 @@ def get_meal_ticket_html(meal_details):
                             <div class="ticket-header">PHIẾU CƠM CHAY</div>
                             <div class="ticket-body">
                                 <div class="line">{date_str}</div>
-                                <div class="line">{group}</div>
+                                <div class="line">{employee_group}</div>
                                 <div class="line">{name}</div>
                             </div>
                         </div>
