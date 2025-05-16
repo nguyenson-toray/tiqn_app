@@ -6,6 +6,9 @@ frappe.ui.form.on("Vegetarian Meal", {
         // Load groups from server using Python method
         frappe.call({
             method: "tiqn_app.tiqn_app.doctype.vegetarian_meal.vegetarian_meal.get_groups_for_select",
+            arguments: {
+                "employee_group": frm.doc.select_group
+            },
             callback: function (r) {
                 if (r.message && r.message.length > 0) {
                     console.log(r.message);

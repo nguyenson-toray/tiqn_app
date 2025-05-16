@@ -8,6 +8,7 @@ from frappe.model.document import Document
 from frappe.utils.pdf import get_pdf
 from frappe.utils import getdate, cstr
 from datetime import datetime
+import json
 
 class PrintVegetarianMealRegistrationForm(Document):
     """This is a standard DocType that will be used just for the UI"""
@@ -62,7 +63,7 @@ def get_meal_details(from_date, to_date, employee_group):
             WHERE 
                 register_date BETWEEN %s AND %s
             ORDER BY 
-                employee_group ASC, full_name ASC
+               register_date ASC, employee_group ASC, employee_id ASC
         """, (from_date, to_date), as_dict=1)
     else:
         # Query specific group
@@ -78,7 +79,7 @@ def get_meal_details(from_date, to_date, employee_group):
                 register_date BETWEEN %s AND %s
                 AND employee_group = %s
             ORDER BY 
-                full_name ASC
+                 register_date ASC, employee_group ASC, employee_id ASC
         """, (from_date, to_date, employee_group), as_dict=1)
     
     return meal_details
@@ -97,32 +98,20 @@ def save_pdf_as_temporary_file(filename, pdf_data):
     return file_doc
 
 @frappe.whitelist()
-def generate_meal_registration_pdf():
+def convert_html_to_pdf_and_save(html_content):
     """
-    Generate a PDF with meal tickets
-    - Filename format: vegetarian_meal_tickets_yymmddhhmmss.pdf
-    - Properly formatted tickets
-    - No margins for exact rendering
+    Convert HTML content to PDF and save as a temporary file
+    This function is called from JavaScript
     """
     try:
-        # Get the form data from the request
-        from_date = frappe.form_dict.get('from_date')
-        to_date = frappe.form_dict.get('to_date')
-        employee_group = frappe.form_dict.get('employee_group')
-        
-        # Get meal details directly
-        meal_details = get_meal_details(from_date, to_date, employee_group)
-        
-        if not meal_details:
+        # Check if HTML content is provided
+        if not html_content:
             return {
                 "success": False,
-                "message": "No meal details found for the selected criteria."
+                "message": "No HTML content provided."
             }
         
-        # Generate HTML content
-        html_content = get_meal_ticket_html(meal_details)
-        
-        # Convert to PDF with exact settings
+        # Convert to PDF with adjusted settings
         pdf_options = {
             "page-size": "A4",
             "margin-top": "0mm",
@@ -137,7 +126,6 @@ def generate_meal_registration_pdf():
         pdf_data = get_pdf(html_content, options=pdf_options)
         
         # Generate timestamp format yymmddhhmmss
-        from datetime import datetime
         timestamp = datetime.now().strftime("%y%m%d%H%M%S")
         file_name = f"vegetarian_meal_tickets_{timestamp}.pdf"
         
@@ -156,239 +144,27 @@ def generate_meal_registration_pdf():
             "message": f"Error generating PDF: {str(e)}"
         }
 
-@frappe.whitelist()    
-@frappe.whitelist()    
-def get_meal_ticket_html(meal_details):
+# Keep these functions for backward compatibility
+@frappe.whitelist()
+def generate_meal_registration_pdf():
     """
-    Generate meal tickets with specific dimensions:
-    - 15mm margins on all sides
-    - Fixed ticket size of 55mm x 30mm
-    - 2mm spacing between tickets
-    - 8 rows x 3 columns layout (24 tickets per page)
-    - Horizontal lines between rows like in screenshot
+    Legacy function kept for backward compatibility
+    Now redirects to the client-side generation method
     """
-    html = """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <style>
-            /* Page settings */
-            @page {
-                size: A4 portrait;
-                margin: 0;
+    try:
+        # Get the form data from the request
+        html_content = frappe.form_dict.get('html_content')
+        if not html_content:
+            return {
+                "success": False,
+                "message": "No HTML content provided."
             }
-            
-            /* Reset and base styles */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            
-            body {
-                font-family: Arial, sans-serif;
-                font-size: 13pt;
-                line-height: 1.2;
-                width: 210mm;  /* A4 width */
-                height: 297mm; /* A4 height */
-            }
-            
-            /* Page container with exactly 15mm margins on all sides */
-            .page {
-                page-break-after: always;
-                width: 210mm;
-                height: 297mm;
-				margin: 0;
-                margin: 0;
-                padding: 0;;
-                position: relative;
-            }
-            
-            .page:last-child {
-                page-break-after: avoid;
-            }
-            
-            
-            
-            /* Table with exact 2mm spacing */
-            table.tickets {
-                width: 245mm; /* A4 width (210mm) x 1.67 */
-                height: 346mm; /* A4 height (297mm) x 1.67 */
-                border-collapse: separate;
-                border-spacing: 2mm; /* 2mm space between tickets as requested */
-                table-layout: fixed;
-                margin: 0 auto;
-            }
-            
-            /* Cell dimensions - fixed size as requested */
-            td {
-                width: 70mm;  /* Fixed width as requested */
-                height: 30mm; /* Fixed height as requested */
-                padding: 0;
-                vertical-align: top;
-            }
-            
-            /* Ticket styling */
-            .ticket {
-                border: 1px solid black;
-                height: 100%;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-            }
-            
-            /* Header styling - ensure title stays on one line */
-            .ticket-header {
-                text-align: center;
-                font-weight: bold;
-                border-bottom: 1px solid black;
-                padding: 2mm 0;
-                white-space: nowrap;
-                overflow: hidden;
-            }
-            
-            /* Content area */
-            .ticket-body {
-                padding: 3mm;
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-            }
-            
-            /* Content lines */
-            .line {
-                margin-bottom: 2mm;
-                line-height: 1.3;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            
-            /* Empty cell - completely empty */
-            .empty-cell {
-                /* No styling for empty cell */
-            }
-        </style>
-    </head>
-    <body>
-    """
-    
-    # Calculate how many pages are needed (24 tickets per page)
-    tickets_per_page = 24  # 8 rows × 3 columns
-    total_tickets = len(meal_details)
-    total_pages = (total_tickets + tickets_per_page - 1) // tickets_per_page
-    
-    # Ensure at least one page is created
-    if total_pages == 0:
-        total_pages = 1
-    
-    # Generate each page
-    for page in range(total_pages):
-        # Start page
-        html += '<div class="page">'
         
-        # Add horizontal separators as seen in screenshot
-        # Calculate positions for 8 rows + 1 top line (9 lines total)
-        for i in range(9):
-            # Height of each row (30mm) + spacing (2mm) = 32mm
-            # Position from top of page: 15mm (top margin) + row_index * row_height
-            separator_top = 15 + (i * 32)
-            if i > 0:  # Adjust position slightly to account for spacing
-                separator_top -= 2
-            
-            # Add separator at calculated position
-            html += f'<div class="separator" style="top: {separator_top}mm;"></div>'
-        
-        # Add table with tickets
-        html += '<table class="tickets">'
-        
-        # Create 8 rows per page
-        for row in range(8):
-            html += '<tr>'
-            
-            # Create 3 columns per row
-            for col in range(3):
-                # Calculate the index in the data array
-                index = page * tickets_per_page + row * 3 + col
-                
-                # Check if we have data for this position
-                if index < len(meal_details):
-                    item = meal_details[index]
-                    
-                    # Format the date
-                    date_str = ""
-                    if item["register_date"]:
-                        try:
-                            # Convert string to date if needed
-                            if isinstance(item["register_date"], str):
-                                reg_date = datetime.strptime(item["register_date"], "%Y-%m-%d").date()
-                            else:
-                                reg_date = item["register_date"]
-                            
-                            # Format the weekday in Vietnamese (2-CN format)
-                            weekday_map = {
-                                0: "2",  # Monday
-                                1: "3",
-                                2: "4",
-                                3: "5",
-                                4: "6",
-                                5: "7",
-                                6: "CN"  # Sunday
-                            }
-                            weekday = weekday_map.get(reg_date.weekday())
-                            date_str = f"Thứ {weekday} Ngày {reg_date.day}/{reg_date.month}"
-                        except Exception:
-                            date_str = ""
-                    
-                    # Get other fields
-                    employee_group = item.get("employee_group", "")
-                    name = item.get("full_name", "")
-                    
-                    # Create populated ticket - exact format from screenshot
-                    html += f"""
-                    <td>
-                        <div class="ticket">
-                            <div class="ticket-header">PHIẾU CƠM CHAY</div>
-                            <div class="ticket-body">
-                                <div class="line">{date_str}</div>
-                                <div class="line">{employee_group}</div>
-                                <div class="line">{name}</div>
-                            </div>
-                        </div>
-                    </td>
-                    """
-                else:
-                    # Create empty ticket with border and header
-                    html += """
-                    <td>
-                        <div class="ticket">
-                            <div class="ticket-header">PHIẾU CƠM CHAY</div>
-                            <div class="ticket-body">
-                                <div class="line"></div>
-                                <div class="line"></div>
-                                <div class="line"></div>
-                            </div>
-                        </div>
-                    </td>
-                    """
-            
-            # End row
-            html += '</tr>'
-        
-        # End table and page
-        html += '</table>'
-        html += '</div>'
-        
-        # Add page break if not the last page
-        if page < total_pages - 1:
-            html += '<div style="page-break-after: always;"></div>'
-    
-    # End document
-    html += """
-    </body>
-    </html>
-    """
-    
-    return html
+        # Use the new function
+        return convert_html_to_pdf_and_save(html_content)
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "Vegetarian Meal PDF Generation Error")
+        return {
+            "success": False,
+            "message": f"Error generating PDF: {str(e)}"
+        }

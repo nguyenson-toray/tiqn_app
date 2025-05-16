@@ -5,6 +5,15 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "section_break_ttzk",
+  "sort_by",
+  "column_break_daws",
+  "ticket_width",
+  "column_break_cdxk",
+  "ticket_hight",
+  "column_break_tewb",
+  "scale_percent",
+  "section_break_bhqv",
   "from_date",
   "column_break_uaij",
   "to_date",
@@ -65,12 +74,58 @@
    "fieldname": "employee_group",
    "fieldtype": "Select",
    "label": "Group"
+  },
+  {
+   "fieldname": "section_break_ttzk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Group",
+   "fieldname": "sort_by",
+   "fieldtype": "Select",
+   "label": "Sort by",
+   "options": "Group\nRegister Date"
+  },
+  {
+   "fieldname": "column_break_daws",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "55",
+   "fieldname": "ticket_width",
+   "fieldtype": "Int",
+   "label": "Ticket Width (mm)"
+  },
+  {
+   "fieldname": "column_break_cdxk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_tewb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "30",
+   "fieldname": "ticket_hight",
+   "fieldtype": "Int",
+   "label": "Ticket Hight (mm)"
+  },
+  {
+   "default": "110",
+   "fieldname": "scale_percent",
+   "fieldtype": "Percent",
+   "label": "Scale Percent",
+   "precision": "0"
+  },
+  {
+   "fieldname": "section_break_bhqv",
+   "fieldtype": "Section Break"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-15 12:39:59.325067",
+ "modified": "2025-05-16 16:19:59.596422",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "Print Vegetarian Meal Registration Form",
