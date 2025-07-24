@@ -8,6 +8,7 @@
   "config_tab",
   "config",
   "reload_interval",
+  "reload_interval_debug",
   "time_exit_app",
   "announcement_tab",
   "announcement_enable",
@@ -30,6 +31,7 @@
    "label": "Config"
   },
   {
+   "default": "600",
    "description": "Seconds",
    "fieldname": "reload_interval",
    "fieldtype": "Int",
@@ -80,12 +82,20 @@
    "fieldname": "announcement_font_size",
    "fieldtype": "Int",
    "label": "Announcement Font Size"
+  },
+  {
+   "default": "10",
+   "description": "Seconds",
+   "fieldname": "reload_interval_debug",
+   "fieldtype": "Int",
+   "label": "Reload Interval Debug",
+   "non_negative": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-18 15:48:13.330328",
+ "modified": "2025-07-24 15:56:25.288379",
  "modified_by": "Administrator",
  "module": "TIQN App",
  "name": "TV Config",
