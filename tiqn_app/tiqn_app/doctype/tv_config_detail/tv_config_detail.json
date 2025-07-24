@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-18 11:26:36.834528",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "location",
+  "ip",
+  "mac",
+  "dashboard_link",
+  "dashboard_link_debug"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "fieldname": "location",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Location",
+   "options": "Control 1\nControl 2\nControl 3\nControl 4\nPreparation 1\nPreparation 2\nQC\nLine 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8\nLine 9\nLine 10\nLine 11\nLine 12\nLine 13\nLine 14\nLine 15\nLine 16",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "ip",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "IP"
+  },
+  {
+   "columns": 1,
+   "fieldname": "mac",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "MAC"
+  },
+  {
+   "columns": 3,
+   "fieldname": "dashboard_link",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Dashboard Link"
+  },
+  {
+   "columns": 3,
+   "fieldname": "dashboard_link_debug",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Dashboard Link Debug"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-23 11:32:57.627245",
+ "modified_by": "Administrator",
+ "module": "TIQN App",
+ "name": "TV Config Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-18 11:24:31.345238",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "config_tab",
+  "config",
+  "reload_interval",
+  "time_exit_app",
+  "announcement_tab",
+  "announcement_enable",
+  "announcement_begin",
+  "announcement_duration",
+  "announcement_font_size",
+  "announcement_title",
+  "announcement"
+ ],
+ "fields": [
+  {
+   "fieldname": "config",
+   "fieldtype": "Table",
+   "label": "Config",
+   "options": "TV Config Detail"
+  },
+  {
+   "fieldname": "config_tab",
+   "fieldtype": "Tab Break",
+   "label": "Config"
+  },
+  {
+   "description": "Seconds",
+   "fieldname": "reload_interval",
+   "fieldtype": "Int",
+   "label": "Reload Interval",
+   "non_negative": 1
+  },
+  {
+   "default": "N\u1ed8I QUY",
+   "fieldname": "announcement_tab",
+   "fieldtype": "Tab Break",
+   "label": "Announcement"
+  },
+  {
+   "fieldname": "announcement",
+   "fieldtype": "Text Editor",
+   "label": "Announcement"
+  },
+  {
+   "fieldname": "announcement_begin",
+   "fieldtype": "Time",
+   "label": "Announcement Begin"
+  },
+  {
+   "description": "Minutes",
+   "fieldname": "announcement_duration",
+   "fieldtype": "Int",
+   "label": "Announcement Duration"
+  },
+  {
+   "default": "1",
+   "fieldname": "announcement_enable",
+   "fieldtype": "Check",
+   "label": "Announcement Enable"
+  },
+  {
+   "fieldname": "time_exit_app",
+   "fieldtype": "Time",
+   "label": "Time Exit App"
+  },
+  {
+   "default": "N\u1ed8I QUY",
+   "fieldname": "announcement_title",
+   "fieldtype": "Small Text",
+   "label": "Announcement Title"
+  },
+  {
+   "default": "18",
+   "fieldname": "announcement_font_size",
+   "fieldtype": "Int",
+   "label": "Announcement Font Size"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-18 15:48:13.330328",
+ "modified_by": "Administrator",
+ "module": "TIQN App",
+ "name": "TV Config",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
